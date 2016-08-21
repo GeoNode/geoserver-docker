@@ -1,0 +1,15 @@
+geoserver:
+  image: geonode/geoserver
+  links:
+    - postgis
+  ports:
+    - "8080:8080"
+  volumes:
+    - /srv/docker/geoserver/geoserver:/geoserver_data
+
+postgis:
+  image: kartoza/postgis
+  ports:
+    - "25432:5432"
+  volumes:
+    - /srv/docker/geoserver/postgis:/var/lib/postgresql
