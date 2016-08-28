@@ -39,14 +39,45 @@ Point your browser to `http://localhost:8080/geoserver` and login using GeoServe
 
 ### Data volume
 
-This GeoServer container keeps its configuration data at `/geoserver_data` which is exposed as volume in the dockerfile.
+This GeoServer container keeps its configuration data at `/geoserver_data/data` which is exposed as volume in the dockerfile.
 The volume allows for stopping and starting new containers from the same image without losing all the data and custom configuration.
 
 You may want to map this volume to a directory on the host. It will also ease the upgrade process in the future. Volumes can be mounted by passing the `-v` flag to the docker run command:
 
 ```bash
--v /your/host/data/path:/geoserver_data
+-v /your/host/data/path:/geoserver_data/data
 ```
+
+### Data volume container
+
+In case you are running Compose for automatically having GeoServer up and running then a data volume container will be mounted with a default preloaded *GEOSERVER_DATA_DIR* at the configuration data directory of the container.
+Make sure that the image from the repository [docker-data](https://github.com/GeoNode/docker-data) is available from the [GeoNode Docker Hub](https://hub.docker.com/u/geonode/) or has been built locally:
+
+```bash
+docker build -t geonode/geoserver_data .
+```
+
+#### Persistance behavior
+
+If you run:
+
+```bash
+docker-compose stop
+```
+
+Data are retained in the *GEOSERVER_DATA_DIR* and can then be mounted in a new GeoServer instance by running again:
+
+```bash
+docker-compose up
+```
+
+If you run:
+
+```bash
+docker-compose down
+```
+
+Data are completely gone but you can ever start from the base GeoServer Data Directory built for Geonode.
 
 ### Database
 

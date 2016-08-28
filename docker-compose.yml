@@ -1,15 +1,35 @@
-geoserver:
-  image: geonode/geoserver
-  links:
-    - postgis
-  ports:
-    - "8080:8080"
-  volumes:
-    - /srv/docker/geoserver/geoserver:/geoserver_data
+version: '2'
 
-postgis:
-  image: kartoza/postgis
-  ports:
-    - "25432:5432"
-  volumes:
-    - /srv/docker/geoserver/postgis:/var/lib/postgresql
+services:
+
+  geoserver:
+    image: geonode/geoserver
+    links:
+      - postgis
+    ports:
+      - "8080:8080"
+    #volumes:
+      #- /srv/docker/geoserver/geoserver:/geoserver_data
+    volumes_from:
+      # reference to the service which has the volume with the preloaded geoserver_data_dir
+      - data_dir_conf # service for geoserver data volume
+  
+  data_dir_conf:
+    image: geonode/geoserver_data
+    container_name: geoserver_data_dir # named data container
+    command: /bin/true
+    volumes:
+      - /geoserver_data/data
+
+  postgis:
+    image: kartoza/postgis
+    ports:
+      - "25432:5432"
+    volumes:
+      - /srv/docker/geoserver/postgis:/var/lib/postgresql
+    #volumes_from:
+      #- pgstore
+
+volumes:
+  # reference to the named data container that holds the preloaded geoserver data directory 
+  geoserver_data_dir:
