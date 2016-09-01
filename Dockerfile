@@ -14,6 +14,6 @@ RUN cd /usr/local/tomcat/webapps \
     && wget --progress=bar:force:noscroll http://build.geonode.org/geoserver/latest/geoserver-${GEOSERVER_VERSION}.war \
     && unzip -q geoserver-${GEOSERVER_VERSION}.war -d geoserver \
     && rm geoserver-${GEOSERVER_VERSION}.war \
-    && mkdir $GEOSERVER_DATA_DIR
+    && mkdir -p $GEOSERVER_DATA_DIR
 
 VOLUME $GEOSERVER_DATA_DIR
