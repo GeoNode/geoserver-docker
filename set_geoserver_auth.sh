@@ -12,7 +12,7 @@ test -z "$auth_conf_source" && echo "You must specify a source file" && exit 1
 test -z "$auth_conf_target" && echo "You must specify a target conf directory" && exit 1
 
 test ! -f "$auth_conf_source" && echo "Source $auth_conf_source does not exist or is not a file" && exit 1
-test ! -f "$auth_conf_target" && echo "Target directory $auth_conf_target does not exist or is not a directory" && exit 1
+test ! -d "$auth_conf_target" && echo "Target directory $auth_conf_target does not exist or is not a directory" && exit 1
 
 # for debugging
 echo -e "${PUBLIC_BASE_URL}\n"
@@ -37,7 +37,7 @@ tagvalue=`grep "<$tagname>.*<.$tagname>" $auth_conf_source | sed -e "s/^.*<$tagn
 echo "DEBUG: Found the current value for the element <$tagname> - '$tagvalue'"
 
 # Replacing element’s value with $SUBSTITUTION_URL
-sed -e "s/<$tagname>$tagvalue<\/$tagname>/<$tagname>$SUBSTITUTION_URL<\/$tagname>/g" $auth_conf_source > $temp_file
+sed -e "s@<$tagname>$tagvalue<\/$tagname>@<$tagname>$SUBSTITUTION_URL<\/$tagname>@g" $auth_conf_source > $temp_file
 
 # Writing our changes back to the original file ($auth_conf_source)
 mv $temp_file $auth_conf_source
