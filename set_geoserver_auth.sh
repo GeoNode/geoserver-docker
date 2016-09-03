@@ -15,8 +15,8 @@ test ! -f "$auth_conf_source" && echo "Source $auth_conf_source does not exist o
 test ! -d "$auth_conf_target" && echo "Target directory $auth_conf_target does not exist or is not a directory" && exit 1
 
 # for debugging
-echo -e "${PUBLIC_BASE_URL}\n"
-SUBSTITUTION_URL=${PUBLIC_BASE_URL}
+echo -e "BASE_URL=${BASE_URL}\n"
+SUBSTITUTION_URL="http://${DOCKER_HOST_IP}:${PUBLIC_PORT}/"
 echo -e "SUBSTITUTION_URL=$SUBSTITUTION_URL\n"
 echo -e "auth_conf_source=$auth_conf_source\n"
 echo -e "auth_conf_target=$auth_conf_target\n"
