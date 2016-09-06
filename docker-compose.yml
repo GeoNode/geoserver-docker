@@ -4,6 +4,11 @@ services:
 
   geoserver:
     image: geonode/geoserver
+    build:
+      context: .
+      args:
+        - DOCKER_HOST
+        - PUBLIC_PORT=80
     links:
       - postgis
     ports:
@@ -13,6 +18,10 @@ services:
     volumes_from:
       # reference to the service which has the volume with the preloaded geoserver_data_dir
       - data_dir_conf # service for geoserver data volume
+    environment:
+      - DOCKER_HOST
+      - PUBLIC_PORT=80
+      - DOCKER_HOST_IP
   
   data_dir_conf:
     image: geonode/geoserver_data
