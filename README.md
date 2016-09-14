@@ -1,4 +1,4 @@
-# docker-geoserver
+# geoserver-docker
 
 [GeoServer](http://geoserver.org) is an open source server for sharing geospatial data.
 This is a docker image that eases setting up GeoServer running with a separated data directory.
