@@ -51,7 +51,7 @@ You may want to map this volume to a directory on the host. It will also ease th
 ### Data volume container
 
 In case you are running Compose for automatically having GeoServer up and running then a data volume container will be mounted with a default preloaded *GEOSERVER_DATA_DIR* at the configuration data directory of the container.
-Make sure that the image from the repository [docker-data](https://github.com/GeoNode/docker-data) is available from the [GeoNode Docker Hub](https://hub.docker.com/u/geonode/) or has been built locally:
+Make sure that the image from the repository [data-docker](https://github.com/GeoNode/data-docker) is available from the [GeoNode Docker Hub](https://hub.docker.com/u/geonode/) or has been built locally:
 
 ```bash
 docker build -t geonode/geoserver_data .
