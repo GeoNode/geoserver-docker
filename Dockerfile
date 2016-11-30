@@ -13,7 +13,7 @@ ENV GEOSERVER_DATA_DIR="/geoserver_data/data"
 RUN cd /usr/local/tomcat/webapps \
     && wget --progress=bar:force:noscroll http://build.geonode.org/geoserver/latest/geoserver-${GEOSERVER_VERSION}.war \
     && unzip -q geoserver-${GEOSERVER_VERSION}.war -d geoserver \
-    && sed -i.bak 's@<baseUrl>\([^<][^<]*\)</baseUrl>@<baseUrl>http://django/</baseUrl>@'\
+    && sed -i.bak 's@<baseUrl>\([^<][^<]*\)</baseUrl>@<baseUrl>http://django:8000/</baseUrl>@'\
            /usr/local/tomcat/webapps/geoserver/data/security/auth/geonodeAuthProvider/config.xml \
     && rm geoserver-${GEOSERVER_VERSION}.war \
     && mkdir -p $GEOSERVER_DATA_DIR
@@ -53,6 +53,11 @@ WORKDIR /usr/local/tomcat/tmp
 COPY set_geoserver_auth.sh /usr/local/tomcat/tmp
 RUN chmod +x /usr/local/tomcat/tmp/set_geoserver_auth.sh
 
+COPY setup_auth.sh /usr/local/tomcat/tmp
+RUN chmod +x /usr/local/tomcat/tmp/setup_auth.sh
 COPY entrypoint.sh /usr/local/tomcat/tmp/entrypoint.sh
 RUN chmod +x /usr/local/tomcat/tmp/entrypoint.sh
 CMD ["/usr/local/tomcat/tmp/entrypoint.sh"]
+
+
+
