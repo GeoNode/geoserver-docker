@@ -51,6 +51,8 @@ WORKDIR /usr/local/tomcat/tmp
 COPY set_geoserver_auth.sh /usr/local/tomcat/tmp
 RUN chmod +x /usr/local/tomcat/tmp/set_geoserver_auth.sh
 
+COPY setup_auth.sh /usr/local/tomcat/tmp
+RUN chmod +x /usr/local/tomcat/tmp/setup_auth.sh
 COPY entrypoint.sh /usr/local/tomcat/tmp/entrypoint.sh
 RUN chmod +x /usr/local/tomcat/tmp/entrypoint.sh
 CMD ["/usr/local/tomcat/tmp/entrypoint.sh"]
