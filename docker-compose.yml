@@ -25,7 +25,7 @@ services:
       - DJANGO_URL=http://localhost/
   
   data_dir_conf:
-    image: geonode/geoserver_data
+    image: geonode/geoserver_data:2.9.x-oauth2
     container_name: geoserver_data_dir # named data container
     command: /bin/true
     volumes:

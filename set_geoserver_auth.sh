@@ -1,7 +1,7 @@
 #!/bin/bash
 
-auth_conf_source=$1
-auth_conf_target=$2
+auth_conf_source="$1"
+auth_conf_target="$2"
 # Creating a temporary file for sed to write the changes to
 temp_file="xml.tmp"
 touch $temp_file
@@ -22,9 +22,9 @@ echo -e "auth_conf_source=$auth_conf_source\n"
 echo -e "auth_conf_target=$auth_conf_target\n"
 
 # Elegance is the key -> adding an empty last line for Mr. “sed” to pick up
-echo " " >> $auth_conf_source
+echo " " >> "$auth_conf_source"
 
-cat $auth_conf_source
+cat "$auth_conf_source"
 
 tagname=( "baseUrl" )
 
@@ -32,20 +32,20 @@ echo "DEBUG: Starting... [Ok]\n"
 
 for i in "${tagname[@]}"
 do
-    echo "DEBUG: searching $auth_conf_source for tagname <$i> and replacing its value with '$SUBSTITUTION_URL'"
+    echo "DEBUG: searching '$auth_conf_source' for tagname <$i> and replacing its value with '$SUBSTITUTION_URL'"
 
     # Extracting the value from the <$tagname> element
-    tagvalue=`grep "<$i>.*<.$i>" $auth_conf_source | sed -e "s/^.*<$i/<$i/" | cut -f2 -d">"| cut -f1 -d"<"`
+    tagvalue=`grep "<$i>.*<.$i>" "$auth_conf_source" | sed -e "s/^.*<$i/<$i/" | cut -f2 -d">"| cut -f1 -d"<"`
 
     echo "DEBUG: Found the current value for the element <$i> - '$tagvalue'"
 
     # Replacing element’s value with $SUBSTITUTION_URL
-    sed -e "s@<$i>$tagvalue<\/$i>@<$i>$SUBSTITUTION_URL<\/$i>@g" $auth_conf_source > $temp_file
-    cp $temp_file $auth_conf_source
+    sed -e "s@<$i>$tagvalue<\/$i>@<$i>$SUBSTITUTION_URL<\/$i>@g" "$auth_conf_source" > "$temp_file"
+    cp "$temp_file" "$auth_conf_source"
 done
 # Writing our changes back to the original file ($auth_conf_source)
 # no longer needed
 # mv $temp_file $auth_conf_source
 
 echo "DEBUG: Finished... [Ok] --- Final xml file is \n"
-cat $auth_conf_source
+cat "$auth_conf_source"
