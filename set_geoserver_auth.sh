@@ -16,7 +16,7 @@ test ! -d "$auth_conf_target" && echo "Target directory $auth_conf_target does n
 
 # for debugging
 echo -e "BASE_URL=${BASE_URL}\n"
-SUBSTITUTION_URL="http://${DOCKER_HOST_IP}:${PUBLIC_PORT}/"
+SUBSTITUTION_URL="http://${DOCKER_HOST_IP}:${PUBLIC_PORT}"
 echo -e "SUBSTITUTION_URL=$SUBSTITUTION_URL\n"
 echo -e "auth_conf_source=$auth_conf_source\n"
 echo -e "auth_conf_target=$auth_conf_target\n"
