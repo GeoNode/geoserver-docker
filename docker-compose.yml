@@ -3,7 +3,7 @@ version: '2'
 services:
 
   geoserver:
-    image: geonode/geoserver
+    image: geonode/geoserver:2.9.x-oauth2
     build:
       context: .
       args:
