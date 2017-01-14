@@ -26,7 +26,13 @@ echo " " >> "$auth_conf_source"
 
 cat "$auth_conf_source"
 
-tagname=( "baseUrl" )
+tagname=( ${@:3:5} )
+
+# for debugging
+for i in "${tagname[@]}"
+do
+   echo "tagname=<$i>"
+done
 
 echo "DEBUG: Starting... [Ok]\n"
 
@@ -35,12 +41,18 @@ do
     echo "DEBUG: searching '$auth_conf_source' for tagname <$i> and replacing its value with '$SUBSTITUTION_URL'"
 
     # Extracting the value from the <$tagname> element
+    # echo -ne "<$i>$tagvalue</$i>" | xmlstarlet sel -t -m "//a" -v . -n
     tagvalue=`grep "<$i>.*<.$i>" "$auth_conf_source" | sed -e "s/^.*<$i/<$i/" | cut -f2 -d">"| cut -f1 -d"<"`
 
     echo "DEBUG: Found the current value for the element <$i> - '$tagvalue'"
 
+    # Setting new substituted value
+    newvalue=`echo -ne "$tagvalue" | sed -re "s@localhost(:8.*0)@$SUBSTITUTION_URL@"`
+
+    echo "DEBUG: Found the new value for the element <$i> - '$newvalue'"    
     # Replacing element’s value with $SUBSTITUTION_URL
-    sed -e "s@<$i>$tagvalue<\/$i>@<$i>$SUBSTITUTION_URL<\/$i>@g" "$auth_conf_source" > "$temp_file"
+    # echo -ne "<$i>$tagvalue</$i>" | xmlstarlet sel -t -m "//a" -v . -n
+    sed -e "s@<$i>$tagvalue<\/$i>@<$i>$newvalue<\/$i>@g" "$auth_conf_source" > "$temp_file"
     cp "$temp_file" "$auth_conf_source"
 done
 # Writing our changes back to the original file ($auth_conf_source)
