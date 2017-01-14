@@ -1,25 +1,25 @@
 # geoserver-docker
 
 [GeoServer](http://geoserver.org) is an open source server for sharing geospatial data.
-This is a docker image that eases setting up GeoServer running with a separated data directory.
+This is a docker image that eases setting up a GeoServer running specifically for [GeoNode](https://github.com/GeoNode/geoserver-geonode-ext) with an additional separated data directory.
 
-The image is based on the official Tomcat 8 image
+The image is based on the official Tomcat 9 image
 
 ## Installation
 
-This image is available as a [trusted build on the docker hub](https://registry.hub.docker.com/u/thklein/geoserver/), and is the recommended method of installation.
+This image is available as a [trusted build on the docker hub](https://registry.hub.docker.com/r/geonode/geoserver/), and is the recommended method of installation.
 Simple pull the image from the docker hub.
 
 ```bash
-$ docker pull waybarrios/docker-geoserver
+$ docker pull geonode/geoserver
 ```
 
 Alternatively you can build the image locally
 
 ```bash
-$ git clone https://github.com/waybarrios/docker-geoserver.git
-$ cd docker-geoserver
-$ docker build -t "waybarrios/docker-geoserver" .
+$ git clone https://github.com/geonode/geoserver-docker.git
+$ cd geoserver-docker
+$ docker build -t "geonode/geoserver" .
 ```
 
 ## Quick start
@@ -27,13 +27,22 @@ $ docker build -t "waybarrios/docker-geoserver" .
 You can quick start the image using the command line
 
 ```bash
-$ docker run --name "geoserver" -d -p 8080:8080 waybarrios/docker-geoserver
+$ docker run --name "geoserver" -d -p 8080:8080 geonode/geoserver
 ```
 
 Point your browser to `http://localhost:8080/geoserver` and login using GeoServer's default username and password:
 
 * Username: admin
 * Password: geoserver
+
+## How to use different versions
+
+There are mainly two different versions of this image which are useful for running **GeoNode** with different authentication system types. These versions are released as specific tags for two authentication mechanisms:
+
+* **Cookie based authn**: [geonode/geoserver:2.9.x](https://hub.docker.com/r/geonode/geoserver/builds/)
+* **Oauth2 based authn**: [geonode/geoserver:2.9.x-oauth2](https://hub.docker.com/r/geonode/geoserver/builds/)
+
+You can declare what version to use along with the data directory tag corresponded to the same version.  
 
 ## Configuration
 
@@ -78,6 +87,13 @@ docker-compose down
 ```
 
 Data are completely gone but you can ever start from the base GeoServer Data Directory built for Geonode.
+
+#### Data directory versions
+
+There has to be a correspondence one-to-one between the data directory version and the tag of the GeoServer image used in the Docker compose file. So at the end you can consume these images below:
+
+* **2.9.x**: [geonode/geoserver_data:2.9.x](https://hub.docker.com/r/geonode/geoserver_data/builds/)
+* **2.9.x-oauth2**: [geonode/geoserver_data:2.9.x-oauth2](https://hub.docker.com/r/geonode/geoserver_data/builds/)
 
 ### Database
 
