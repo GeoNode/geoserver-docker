@@ -47,7 +47,7 @@ do
     echo "DEBUG: Found the current value for the element <$i> - '$tagvalue'"
 
     # Setting new substituted value
-    newvalue=`echo -ne "$tagvalue" | sed -re "s@localhost(:8.*0)@$SUBSTITUTION_URL@"`
+    newvalue=`echo -ne "$tagvalue" | sed -re "s@http://localhost(:8.*0)@$SUBSTITUTION_URL@"`
 
     echo "DEBUG: Found the new value for the element <$i> - '$newvalue'"    
     # Replacing element’s value with $SUBSTITUTION_URL
