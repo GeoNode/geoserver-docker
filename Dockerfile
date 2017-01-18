@@ -48,11 +48,6 @@ RUN echo export BASE_URL=http://${NGINX_HOST}:${NGINX_PORT}/ | sed 's/tcp:\/\/\(
 # copy the script and perform the change to config.xml
 RUN mkdir -p /usr/local/tomcat/tmp
 WORKDIR /usr/local/tomcat/tmp
-COPY set_geoserver_auth.sh /usr/local/tomcat/tmp
-RUN chmod +x /usr/local/tomcat/tmp/set_geoserver_auth.sh
-
-COPY setup_auth.sh /usr/local/tomcat/tmp
-RUN chmod +x /usr/local/tomcat/tmp/setup_auth.sh
 COPY entrypoint.sh /usr/local/tomcat/tmp/entrypoint.sh
 RUN chmod +x /usr/local/tomcat/tmp/entrypoint.sh
 CMD ["/usr/local/tomcat/tmp/entrypoint.sh"]
