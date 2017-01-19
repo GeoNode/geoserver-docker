@@ -16,8 +16,11 @@ sed -i 's@http://localhost:8000/@'"$SITEURL"'@g' /geoserver_data/data/security/f
 # Set geoserver url from environment variables.
 sed -i 's@http://localhost:8080/geoserver@'"$GEOSERVER_PUBLIC_LOCATION"'@g' /geoserver_data/data/security/filter/geonode-oauth2/config.xml
 # Set django url from environment variables.
-sed -i.bak 's@<baseUrl>\([^<][^<]*\)</baseUrl>@<baseUrl>'"$SITEURL"'</baseUrl>@'\
+sed -i.bak 's@<baseUrl>\([^<][^<]*\)</baseUrl>@<baseUrl>'"$DJANGO_URL"'</baseUrl>@'\
            /geoserver_data/data/security/role/geonode\ REST\ role\ service/config.xml
+
+sed -i.bak 's@<proxyBaseUrl>\([^<][^<]*\)</proxyBaseUrl>@<proxyBaseUrl>'"$GEOSERVER_PUBLIC_LOCATION"'</proxyBaseUrl>@'\
+           /geoserver_data/data/global.xml
 
 # start tomcat
 exec catalina.sh run
