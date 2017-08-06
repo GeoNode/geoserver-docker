@@ -39,10 +39,10 @@ Point your browser to `http://localhost:8080/geoserver` and login using GeoServe
 
 There are mainly two different versions of this image which are useful for running **GeoNode** with different authentication system types. These versions are released as specific tags for two authentication mechanisms:
 
-* **Cookie based authn**: [geonode/geoserver:2.9.x](https://hub.docker.com/r/geonode/geoserver/builds/)
-* **Oauth2 based authn**: [geonode/geoserver:2.9.x-oauth2](https://hub.docker.com/r/geonode/geoserver/builds/)
+* **Cookie based authn**: [geonode/geoserver:2.9.x](https://hub.docker.com/r/geonode/geoserver/builds/bx7ydhghnlrfnsppduyva73/)
+* **Oauth2 based authn**: [geonode/geoserver:2.9.x-oauth2](https://hub.docker.com/r/geonode/geoserver/builds/bwca5rtexeoegzgroavftdr/)
 
-You can declare what version to use along with the data directory tag corresponded to the same version.  
+You can declare what version to use along with the data directory tag which corresponds to the same version.  
 
 ## Configuration
 
