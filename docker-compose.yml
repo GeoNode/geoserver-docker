@@ -1,4 +1,4 @@
-version: '2'
+version: '2.2'
 
 services:
 
@@ -7,19 +7,23 @@ services:
     build:
       context: .
       args:
-        - DOCKER_HOST
+        - DOCKERHOST
+        - GEONODE_HOST_IP
         - PUBLIC_PORT=80
     links:
       - postgis
     ports:
       - "8080:8080"
-    #volumes:
+    volumes:
       #- /srv/docker/geoserver/geoserver:/geoserver_data/data
+      - /var/run/docker.sock:/var/run/docker.sock
     volumes_from:
-      # reference to the service which has the volume with the preloaded geoserver_data_dir
+      # reference to the service which has the volume
+      # with the preloaded geoserver_data_dir
       - data_dir_conf # service for geoserver data volume
     environment:
-      - DOCKER_HOST
+      - DOCKERHOST
+      - GEONODE_HOST_IP
       - PUBLIC_PORT=80
       - DOCKER_HOST_IP
       - DJANGO_URL=http://localhost/
