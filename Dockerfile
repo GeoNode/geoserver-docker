@@ -60,7 +60,7 @@ ENV PUBLIC_PORT=${PUBLIC_PORT}
 RUN echo -n #2===>PUBLIC_PORT=${PUBLIC_PORT}
 
 # set nginx base url for geoserver
-RUN echo export BASE_URL=http://${NGINX_HOST}:${NGINX_PORT}/ | \
+RUN echo export NGINX_BASE_URL=http://${NGINX_HOST}:${NGINX_PORT}/ | \
     sed 's/tcp:\/\/\([^:]*\).*/\1/' >> /root/.bashrc
 
 # copy the script and perform the run of scripts from entrypoint.sh
@@ -70,6 +70,7 @@ COPY set_geoserver_auth.sh /usr/local/tomcat/tmp
 COPY setup_auth.sh /usr/local/tomcat/tmp
 COPY requirements.txt /usr/local/tomcat/tmp
 COPY get_dockerhost_ip.py /usr/local/tomcat/tmp
+COPY get_nginxhost_ip.py /usr/local/tomcat/tmp
 COPY entrypoint.sh /usr/local/tomcat/tmp
 
 RUN apt-get update \
@@ -80,6 +81,7 @@ RUN apt-get update \
     && chmod +x /usr/local/tomcat/tmp/entrypoint.sh \
     && pip install --upgrade pip \
     && pip install -r requirements.txt \
-    && chmod +x /usr/local/tomcat/tmp/get_dockerhost_ip.py
+    && chmod +x /usr/local/tomcat/tmp/get_dockerhost_ip.py \
+    && chmod +x /usr/local/tomcat/tmp/get_nginxhost_ip.py
 
 CMD ["/usr/local/tomcat/tmp/entrypoint.sh"]

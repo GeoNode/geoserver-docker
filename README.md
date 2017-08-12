@@ -27,7 +27,7 @@ $ docker build -t "geonode/geoserver" .
 You can quick start the image using the command line
 
 ```bash
-$ docker run --name "geoserver" -d -p 8080:8080 geonode/geoserver
+$ docker run --name "geoserver" -v /var/run/docker.sock:/var/run/docker.sock -d -p 8080:8080 geonode/geoserver
 ```
 
 Point your browser to `http://localhost:8080/geoserver` and login using GeoServer's default username and password:
