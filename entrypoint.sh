@@ -7,14 +7,30 @@ source /root/.bashrc
 if ! [ -z ${DOCKER_HOST_IP} ]
 then
 
-    echo "DOCKER_HOST_IP is empty so I'll run the python utility" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
+    echo "DOCKER_HOST_IP is empty so I'll run the python utility \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
     DOCKER_HOST_IP=`python /usr/local/tomcat/tmp/get_dockerhost_ip.py`
-    echo "The calculated value is now DOCKER_HOST_IP='$DOCKER_HOST_IP'" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
+    echo "The calculated value is now DOCKER_HOST_IP='$DOCKER_HOST_IP' \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
 
 else
-    echo "DOCKER_HOST_IP is filled so I'll leave the found value '$DOCKER_HOST_IP'" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
+
+    echo "DOCKER_HOST_IP is filled so I'll leave the found value '$DOCKER_HOST_IP' \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
 
 fi
+
+# control the value of NGINX_BASE_URL variable
+if ! [ -z ${NGINX_BASE_URL} ]
+then
+
+    echo "NGINX_BASE_URL is empty so I'll run the python utility \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
+    NGINX_BASE_URL=`python /usr/local/tomcat/tmp/get_nginxhost_ip.py`
+    echo "The calculated value is now NGINX_BASE_URL='$NGINX_BASE_URL' \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
+
+else
+
+    echo "NGINX_BASE_URL is filled so I'll leave the found value '$NGINX_BASE_URL' \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
+
+fi
+
 # set basic tagname
 TAGNAME=( "baseUrl" )
 
