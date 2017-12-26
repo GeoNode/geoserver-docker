@@ -39,8 +39,14 @@ Point your browser to `http://localhost:8080/geoserver` and login using GeoServe
 
 There are mainly two different versions of this image which are useful for running **GeoNode** with different authentication system types. These versions are released as specific tags for two authentication mechanisms:
 
-* **Cookie based authn**: [geonode/geoserver:2.9.x](https://hub.docker.com/r/geonode/geoserver/builds/bx7ydhghnlrfnsppduyva73/)
-* **Oauth2 based authn**: [geonode/geoserver:2.9.x-oauth2](https://hub.docker.com/r/geonode/geoserver/builds/bwca5rtexeoegzgroavftdr/), [geonode/geoserver:2.10.x](https://hub.docker.com/r/geonode/geoserver/builds/bjohcnc29vm69acqjrvndxf/)
+**Cookie based authn**:
+- [geonode/geoserver:2.9.x](https://hub.docker.com/r/geonode/geoserver/builds/bx7ydhghnlrfnsppduyva73/)
+
+**Oauth2 based authn**:
+- [geonode/geoserver:2.9.x-oauth2](https://hub.docker.com/r/geonode/geoserver/builds/bwca5rtexeoegzgroavftdr/)
+- [geonode/geoserver:2.10.x](https://hub.docker.com/r/geonode/geoserver/builds/bjohcnc29vm69acqjrvndxf/)
+- [geonode/geoserver:2.12.x](https://hub.docker.com/r/geonode/geoserver/builds//)
+
 
 You can declare what version to use along with the data directory tag which corresponds to the same version.  
 
@@ -95,6 +101,7 @@ There has to be a correspondence one-to-one between the data directory version a
 * **2.9.x**: [geonode/geoserver_data:2.9.x](https://hub.docker.com/r/geonode/geoserver_data/builds/bsus6alnddg4bc7icwymevp/)
 * **2.9.x-oauth2**: [geonode/geoserver_data:2.9.x-oauth2](https://hub.docker.com/r/geonode/geoserver_data/builds/bwkxcupsunvuitzusi9gsnt/)
 * **2.10.x**: [geonode/geoserver_data:2.10.x](https://hub.docker.com/r/geonode/geoserver_data/builds/b5jqhpzapkqxzyevjizccug/)
+* **2.12.x**: [geonode/geoserver_data:2.12.x](https://hub.docker.com/r/geonode/geoserver_data/builds/byaaalw3lnasunpveyg3x4i/)
 
 ### Database
 
