@@ -26,7 +26,7 @@ IPAddress'] for c in client.containers.list() if c.status in 'running'
 
     try:
         os.environ["NGINX_BASE_URL"] = "http://" + ipaddr + ":" + "80"
-        print "http://{}:80".format(ipaddr)
+        nginx_base_url = "http://{}:80".format(ipaddr)
     except NameError as er:
         raise Exception("NGINX container is not running maybe exited! Running\
 containers are:{0}".format(containers))
@@ -34,6 +34,10 @@ except KeyError as e:
     raise Exception("There has been a problem with the docker\
 network which has raised the following exception: {0}".format(e))
 else:
-    print "There is no ip address for Nginx within the GeoNode network!"
-finally:
+    # nginx_base_url = None
     pass
+finally:
+    try:
+        print nginx_base_url
+    except NameError as ne:
+        print "There is no ip address for Nginx within the GeoNode network!"
