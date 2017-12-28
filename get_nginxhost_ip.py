@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import logging
 import os
 
 import docker
@@ -27,10 +28,10 @@ IPAddress'] for c in client.containers.list() if c.status in 'running'
         os.environ["NGINX_BASE_URL"] = "http://" + ipaddr + ":" + "80"
         nginx_base_url = "http://{}:80".format(ipaddr)
     except NameError as er:
-        raise Exception("NGINX container is not running maybe exited! Running\
+        logging.info("NGINX container is not running maybe exited! Running\
 containers are:{0}".format(containers))
 except KeyError as ke:
-    raise Exception("There has been a problem with the docker\
+    logging.info("There has been a problem with the docker\
 network which has raised the following exception: {0}".format(ke))
 else:
     # nginx_base_url = None
