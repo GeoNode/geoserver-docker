@@ -4,7 +4,7 @@ set -e
 source /root/.bashrc
 
 # control the value of DOCKER_HOST_IP variable
-if ! [ -z ${DOCKER_HOST_IP} ]
+if [ -z ${DOCKER_HOST_IP} ]
 then
 
     echo "DOCKER_HOST_IP is empty so I'll run the python utility \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
@@ -18,7 +18,7 @@ else
 fi
 
 # control the value of NGINX_BASE_URL variable
-if ! [ -z ${NGINX_BASE_URL} ]
+if [ -z ${NGINX_BASE_URL} ]
 then
 
     echo "NGINX_BASE_URL is empty so I'll run the python utility \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
@@ -34,7 +34,7 @@ fi
 # set basic tagname
 TAGNAME=( "baseUrl" )
 
-if ! [ -z ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml ]
+if ! [ -f ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml ]
 then
 
     echo "Configuration file '$GEOSERVER_DATA_DIR'/security/auth/geonodeAuthProvider/config.xml is not available so it is gone to skip \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
