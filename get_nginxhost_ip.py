@@ -7,7 +7,9 @@ import docker
 
 client = docker.from_env()
 # print client.info()
-
+# TODO avoid this script can fail and fall in the loop where the geoserver
+# service is not available and consequently the nginx too which has geoserver
+# as a reference link
 for network in client.networks.list():
     if 'geonode' in network.name:
         geonode_network = network.name
