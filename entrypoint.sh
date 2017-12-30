@@ -4,11 +4,11 @@ set -e
 source /root/.bashrc
 
 # control the value of DOCKER_HOST_IP variable
-if ! [ -z ${DOCKER_HOST_IP} ]
+if [ -z ${DOCKER_HOST_IP} ]
 then
 
     echo "DOCKER_HOST_IP is empty so I'll run the python utility \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
-    DOCKER_HOST_IP=`python /usr/local/tomcat/tmp/get_dockerhost_ip.py`
+    echo export DOCKER_HOST_IP=`python /usr/local/tomcat/tmp/get_dockerhost_ip.py` >> /root/.bashrc
     echo "The calculated value is now DOCKER_HOST_IP='$DOCKER_HOST_IP' \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
 
 else
@@ -18,11 +18,11 @@ else
 fi
 
 # control the value of NGINX_BASE_URL variable
-if ! [ -z ${NGINX_BASE_URL} ]
+if [ -z `echo ${NGINX_BASE_URL} | sed 's/http:\/\/\([^:]*\).*/\1/'` ]
 then
 
     echo "NGINX_BASE_URL is empty so I'll run the python utility \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
-    NGINX_BASE_URL=`python /usr/local/tomcat/tmp/get_nginxhost_ip.py`
+    echo export NGINX_BASE_URL=`python /usr/local/tomcat/tmp/get_nginxhost_ip.py` >> /root/.bashrc
     echo "The calculated value is now NGINX_BASE_URL='$NGINX_BASE_URL' \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
 
 else
@@ -34,10 +34,19 @@ fi
 # set basic tagname
 TAGNAME=( "baseUrl" )
 
-# backup geonodeAuthProvider config.xml
-cp ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml.orig
-# run the setting script for geonodeAuthProvider
-/usr/local/tomcat/tmp/set_geoserver_auth.sh ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/ ${TAGNAME} >> /usr/local/tomcat/tmp/set_geoserver_auth.log
+if ! [ -f ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml ]
+then
+
+    echo "Configuration file '$GEOSERVER_DATA_DIR'/security/auth/geonodeAuthProvider/config.xml is not available so it is gone to skip \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
+
+else
+
+    # backup geonodeAuthProvider config.xml
+    cp ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml.orig
+    # run the setting script for geonodeAuthProvider
+    /usr/local/tomcat/tmp/set_geoserver_auth.sh ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/ ${TAGNAME} >> /usr/local/tomcat/tmp/set_geoserver_auth.log
+
+fi
 
 # backup geonode REST role service config.xml
 cp "${GEOSERVER_DATA_DIR}/security/role/geonode REST role service/config.xml" "${GEOSERVER_DATA_DIR}/security/role/geonode REST role service/config.xml.orig"
