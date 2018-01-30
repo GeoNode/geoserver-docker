@@ -6,7 +6,7 @@ auth_conf_target="$2"
 temp_file="xml.tmp"
 touch $temp_file
 
-source /root/.bashrc
+source /root/.override_env
 
 test -z "$auth_conf_source" && echo "You must specify a source file" && exit 1
 test -z "$auth_conf_target" && echo "You must specify a target conf directory" && exit 1
