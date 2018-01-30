@@ -24,11 +24,15 @@ then
     echo "GEONODE_LB_HOST_IP is filled so I replace the value of '$DOCKER_HOST_IP' with '$GEONODE_LB_HOST_IP' \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
     echo export DOCKER_HOST_IP=${GEONODE_LB_HOST_IP} >> /root/.override_env
 
+fi
+
 if [ ${GEONODE_LB_PORT} ]
 then
 
     echo "GEONODE_LB_PORT is filled so I replace the value of '$PUBLIC_PORT' with '$GEONODE_LB_PORT' \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
     echo export PUBLIC_PORT=${GEONODE_LB_PORT} >> /root/.override_env
+
+fi
 
 # control the value of NGINX_BASE_URL variable
 if [ -z `echo ${NGINX_BASE_URL} | sed 's/http:\/\/\([^:]*\).*/\1/'` ]
