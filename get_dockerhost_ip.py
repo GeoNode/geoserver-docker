@@ -3,7 +3,6 @@
 import docker
 
 BOOTSTRAP_IMAGE_CHEIP = 'codenvy/che-ip:nightly'
-print _docker_host_ip()
 
 
 def _docker_host_ip():
@@ -21,3 +20,6 @@ address {0}".format(ip_list))
         print("Docker daemon is running at the following \
 address {0}".format(ip_list[0]))
     return ip_list[0]
+
+
+print _docker_host_ip()
