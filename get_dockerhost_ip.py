@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import logging
+
 import docker
 
 BOOTSTRAP_IMAGE_CHEIP = 'codenvy/che-ip:nightly'
