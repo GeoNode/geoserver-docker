@@ -6,6 +6,7 @@ auth_conf_target="$2"
 temp_file="xml.tmp"
 touch $temp_file
 
+source /root/.bashrc
 source /root/.override_env
 
 test -z "$auth_conf_source" && echo "You must specify a source file" && exit 1
@@ -47,7 +48,21 @@ do
 
     # Setting new substituted value
     case $i in
-        accessTokenUri | checkTokenEndpointUrl | proxyBaseUrl | baseUrl )
+        
+        proxyBaseUrl )
+            if [ ${GEONODE_LB_HOST_IP} ]
+            then
+
+                echo "DEBUG: Editing '$auth_conf_source' for tagname <$i> and replacing its value with '$SUBSTITUTION_URL'"
+                newvalue=`echo -ne "$tagvalue" | sed -re "s@http://localhost(:8.*0)@$SUBSTITUTION_URL@"`
+            
+            else
+
+                echo "DEBUG: Editing '$auth_conf_source' for tagname <$i> and replacing its value with '$NGINX_BASE_URL'"
+                newvalue=`echo -ne "$tagvalue" | sed -re "s@http://localhost(:8.*0)@$NGINX_BASE_URL@"`
+
+            fi;;
+        accessTokenUri | checkTokenEndpointUrl | baseUrl )
             echo "DEBUG: Editing '$auth_conf_source' for tagname <$i> and replacing its value with '$NGINX_BASE_URL'"
             newvalue=`echo -ne "$tagvalue" | sed -re "s@http://localhost(:8.*0)@$NGINX_BASE_URL@"`;;
         userAuthorizationUri | redirectUri | logoutUri )
