@@ -16,20 +16,6 @@ fi
 # set basic tagname
 TAGNAME=( "baseUrl" )
 
-if ! [ -f ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml ]
-then
-
-    echo "Configuration file '$GEOSERVER_DATA_DIR'/security/auth/geonodeAuthProvider/config.xml is not available so it is gone to skip \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
-
-else
-
-    # backup geonodeAuthProvider config.xml
-    cp ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml.orig
-    # run the setting script for geonodeAuthProvider
-    /usr/local/tomcat/tmp/set_geoserver_auth.sh ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/config.xml ${GEOSERVER_DATA_DIR}/security/auth/geonodeAuthProvider/ ${TAGNAME} >> /usr/local/tomcat/tmp/set_geoserver_auth.log
-
-fi
-
 # backup geonode REST role service config.xml
 cp "${GEOSERVER_DATA_DIR}/security/role/geonode REST role service/config.xml" "${GEOSERVER_DATA_DIR}/security/role/geonode REST role service/config.xml.orig"
 # run the setting script for geonode REST role service

@@ -48,7 +48,7 @@ do
     case $i in
         proxyBaseUrl | accessTokenUri | checkTokenEndpointUrl | baseUrl | userAuthorizationUri | redirectUri | logoutUri )
             echo "DEBUG: Editing '$auth_conf_source' for tagname <$i> and replacing its value with '$NGINX_BASE_URL'"
-            newvalue=`echo -ne "$tagvalue" | sed -re "s@http://localhost(:8.*0)/@$NGINX_BASE_URL@"`;;
+            newvalue=`echo -ne "$tagvalue" | sed -re "s@http://localhost(:8.*0?)(/?)@$NGINX_BASE_URL@"`;;
         *) echo -n "an unknown variable has been found";;
     esac
 
