@@ -24,9 +24,7 @@ services:
     environment:
       - DOCKERHOST
       - GEONODE_HOST_IP
-      - PUBLIC_PORT=80
-      - DOCKER_HOST_IP
-      - DJANGO_URL=http://localhost/
+      - NGINX_BASE_URL=http://localhost/
 
   data_dir_conf:
     image: geonode/geoserver_data:2.12.x
