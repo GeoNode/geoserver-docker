@@ -26,12 +26,14 @@ IPAddress'] for c in client.containers.list() if c.status in 'running'
         if "geonode/nginx" in item[0]:
             ipaddr = item[1]
 
-    try:
-        os.environ["NGINX_BASE_URL"] = "http://" + ipaddr + ":" + "80"
-        nginx_base_url = "http://{}:80".format(ipaddr)
-    except NameError as er:
-        logging.info("NGINX container is not running maybe exited! Running\
-containers are:{0}".format(containers))
+    if ipaddr:
+        try:
+            os.environ["NGINX_BASE_URL"] = "http://" + ipaddr + ":" + "80"
+            nginx_base_url = "http://{}:80".format(ipaddr)
+        except NameError as er:
+            logging.info("NGINX container is not running maybe exited! Running containers are:{0}".format(containers))
+    else:
+        nginx_base_url = os.environ.get('NGINX_BASE_URL', None)
 except KeyError as ke:
     logging.info("There has been a problem with the docker\
 network which has raised the following exception: {0}".format(ke))
@@ -40,6 +42,9 @@ else:
     pass
 finally:
     try:
-        print nginx_base_url
+        if nginx_base_url:
+            print nginx_base_url
+        else:
+            print os.environ.get('NGINX_BASE_URL', "http://geonode:80")
     except NameError as ne:
         print "http://geonode:80"
