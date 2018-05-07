@@ -42,7 +42,9 @@ cp ${GEOSERVER_DATA_DIR}/global.xml ${GEOSERVER_DATA_DIR}/global.xml.orig
 # http://docs.geonode.org/en/latest/tutorials/install_and_admin/geonode_install/install_geoserver_application.html?highlight=geoserver#setup-geoserver
 CATPROP=/usr/local/tomcat/conf/catalina.properties
 cp $CATPROP $CATPROP.orig
-grep -i bcprov $CATPROP || cat $CATPROP.orig | sed -e 's/xom-\*\.jar$/xom-*.jar,bcprov-*.jar\n/' > $CATPROP
+grep -i bcprov $CATPROP > /dev/null || cat $CATPROP.orig | sed -e 's/xom-\*\.jar$/xom-*.jar,bcprov-*.jar\n/' > $CATPROP
+
+./update_passwords.sh
 
 
 # start tomcat
