@@ -44,7 +44,7 @@ CATPROP=/usr/local/tomcat/conf/catalina.properties
 cp $CATPROP $CATPROP.orig
 grep -i bcprov $CATPROP > /dev/null || cat $CATPROP.orig | sed -e 's/xom-\*\.jar$/xom-*.jar,bcprov-*.jar\n/' > $CATPROP
 
-./update_passwords.sh
+/usr/local/tomcat/tmp/update_passwords.sh
 
 
 # start tomcat
