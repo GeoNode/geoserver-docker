@@ -69,6 +69,8 @@ WORKDIR /usr/local/tomcat/tmp
 COPY set_geoserver_auth.sh /usr/local/tomcat/tmp
 COPY requirements.txt /usr/local/tomcat/tmp
 COPY entrypoint.sh /usr/local/tomcat/tmp
+COPY update_passwords.sh /usr/local/tomcat/tmp
+RUN chmod 755 *.sh
 
 RUN apt-get update \
     && apt-get -y upgrade \
