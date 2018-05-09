@@ -103,7 +103,7 @@ There has to be a correspondence one-to-one between the data directory version a
 * **2.9.x-oauth2**: [geonode/geoserver_data:2.9.x-oauth2](https://hub.docker.com/r/geonode/geoserver_data/builds/bwkxcupsunvuitzusi9gsnt/)
 * **2.10.x**: [geonode/geoserver_data:2.10.x](https://hub.docker.com/r/geonode/geoserver_data/builds/b5jqhpzapkqxzyevjizccug/)
 * **2.12.x**: [geonode/geoserver_data:2.12.x](https://hub.docker.com/r/geonode/geoserver_data/builds/byaaalw3lnasunpveyg3x4i/)
-* **2.12.x**: [geonode/geoserver_data:2.12.x](https://hub.docker.com/r/geonode/geoserver_data/builds/bkaa754x3gwntqxwk7zmivb/)
+* **2.13.x**: [geonode/geoserver_data:2.13.x](https://hub.docker.com/r/geonode/geoserver_data/builds/bkaa754x3gwntqxwk7zmivb/)
 
 ### Database
 
