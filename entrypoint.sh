@@ -86,5 +86,8 @@ cp ${GEOSERVER_DATA_DIR}/global.xml ${GEOSERVER_DATA_DIR}/global.xml.orig
 # run the setting script for global configuration
 /usr/local/tomcat/tmp/set_geoserver_auth.sh ${GEOSERVER_DATA_DIR}/global.xml ${GEOSERVER_DATA_DIR}/ ${TAGNAME} >> /usr/local/tomcat/tmp/set_geoserver_auth.log
 
+# exclude wrong dependencies
+sed -i -e 's/xom-\*\.jar/xom-\*\.jar,bcprov\*\.jar/g' /var/lib/tomcat8/conf/catalina.properties
+
 # start tomcat
 exec catalina.sh run
