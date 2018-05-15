@@ -46,8 +46,7 @@ There are mainly two different versions of this image which are useful for runni
 - [geonode/geoserver:2.9.x-oauth2](https://hub.docker.com/r/geonode/geoserver/builds/bwca5rtexeoegzgroavftdr/)
 - [geonode/geoserver:2.10.x](https://hub.docker.com/r/geonode/geoserver/builds/bjohcnc29vm69acqjrvndxf/)
 - [geonode/geoserver:2.12.x](https://hub.docker.com/r/geonode/geoserver/builds/bh7pyw5atmkcljurwsnzbs7/)
-- [geonode/geoserver:2.13.x](https://hub.docker.com/r/geonode/geoserver/builds/b8gdcwyyjshsewehirbnuy/)
-
+- [geonode/geoserver:2.13.x](https://hub.docker.com/r/geonode/geoserver/builds/bgsve3d4a4aq97pkcc62db4/)
 
 You can declare what version to use along with the data directory tag which corresponds to the same version.  
 
