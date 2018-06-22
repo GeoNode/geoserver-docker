@@ -3,7 +3,7 @@ version: '2.2'
 services:
 
   geoserver:
-    image: geonode/geoserver:2.12.x
+    image: geonode/geoserver:2.13.x
     build:
       context: .
       args:
@@ -27,7 +27,7 @@ services:
       - NGINX_BASE_URL=http://localhost/
 
   data_dir_conf:
-    image: geonode/geoserver_data:2.12.x
+    image: geonode/geoserver_data:2.13.x
     container_name: geoserver_data_dir # named data container
     command: /bin/true
     volumes:
