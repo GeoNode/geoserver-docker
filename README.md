@@ -46,8 +46,7 @@ There are mainly two different versions of this image which are useful for runni
 - [geonode/geoserver:2.9.x-oauth2](https://hub.docker.com/r/geonode/geoserver/builds/bwca5rtexeoegzgroavftdr/)
 - [geonode/geoserver:2.10.x](https://hub.docker.com/r/geonode/geoserver/builds/bjohcnc29vm69acqjrvndxf/)
 - [geonode/geoserver:2.12.x](https://hub.docker.com/r/geonode/geoserver/builds/bh7pyw5atmkcljurwsnzbs7/)
-- [geonode/geoserver:2.13.x](https://hub.docker.com/r/geonode/geoserver/builds/bvqaygax4d5omaphfmxtmqp/)
-
+- [geonode/geoserver:2.13.x](https://hub.docker.com/r/geonode/geoserver/builds/bdb2sesy8qf8jqxprs335nq/)
 
 You can declare what version to use along with the data directory tag which corresponds to the same version.  
 
@@ -103,7 +102,7 @@ There has to be a correspondence one-to-one between the data directory version a
 * **2.9.x-oauth2**: [geonode/geoserver_data:2.9.x-oauth2](https://hub.docker.com/r/geonode/geoserver_data/builds/bwkxcupsunvuitzusi9gsnt/)
 * **2.10.x**: [geonode/geoserver_data:2.10.x](https://hub.docker.com/r/geonode/geoserver_data/builds/b5jqhpzapkqxzyevjizccug/)
 * **2.12.x**: [geonode/geoserver_data:2.12.x](https://hub.docker.com/r/geonode/geoserver_data/builds/byaaalw3lnasunpveyg3x4i/)
-* **2.13.x**: [geonode/geoserver_data:2.13.x](https://hub.docker.com/r/geonode/geoserver_data/builds/byaaalw3lnasunpveyg3x4i/)
+* **2.13.x**: [geonode/geoserver_data:2.13.x](https://hub.docker.com/r/geonode/geoserver_data/builds/bmget7yzack8qdykl43qafc/)
 
 ### Database
 

@@ -6,7 +6,6 @@ import docker
 
 BOOTSTRAP_IMAGE_CHEIP = 'codenvy/che-ip:nightly'
 
-
 def _docker_host_ip():
     client = docker.from_env()
     ip_list = client.containers.run(BOOTSTRAP_IMAGE_CHEIP,

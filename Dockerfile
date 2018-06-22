@@ -72,12 +72,14 @@ COPY entrypoint.sh /usr/local/tomcat/tmp
 COPY update_passwords.sh /usr/local/tomcat/tmp
 RUN chmod 755 *.sh
 
-RUN apt-get update \
+RUN apt-get -y update \
     && apt-get -y upgrade \
     && apt-get install -y python python-pip python-dev \
     && chmod +x /usr/local/tomcat/tmp/set_geoserver_auth.sh \
     && chmod +x /usr/local/tomcat/tmp/entrypoint.sh \
     && pip install --upgrade pip && hash -r \
-    && pip install -r requirements.txt
+    && pip install -r requirements.txt --upgrade \
+    && chmod +x /usr/local/tomcat/tmp/get_dockerhost_ip.py \
+    && chmod +x /usr/local/tomcat/tmp/get_nginxhost_ip.py
 
 CMD ["/usr/local/tomcat/tmp/entrypoint.sh"]
