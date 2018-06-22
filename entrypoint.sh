@@ -37,5 +37,15 @@ cp ${GEOSERVER_DATA_DIR}/global.xml ${GEOSERVER_DATA_DIR}/global.xml.orig
 # run the setting script for global configuration
 /usr/local/tomcat/tmp/set_geoserver_auth.sh ${GEOSERVER_DATA_DIR}/global.xml ${GEOSERVER_DATA_DIR}/ ${TAGNAME} >> /usr/local/tomcat/tmp/set_geoserver_auth.log
 
+# update catalina.properties to exclude bcprov* jars
+# see https://github.com/GeoNode/geoserver-docker/issues/17
+# http://docs.geonode.org/en/latest/tutorials/install_and_admin/geonode_install/install_geoserver_application.html?highlight=geoserver#setup-geoserver
+CATPROP=/usr/local/tomcat/conf/catalina.properties
+cp $CATPROP $CATPROP.orig
+grep -i bcprov $CATPROP > /dev/null || cat $CATPROP.orig | sed -e 's/xom-\*\.jar$/xom-*.jar,bcprov-*.jar\n/' > $CATPROP
+
+/usr/local/tomcat/tmp/update_passwords.sh
+
+
 # start tomcat
 exec catalina.sh run
