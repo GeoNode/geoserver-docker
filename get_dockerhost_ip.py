@@ -5,7 +5,6 @@ import logging
 import docker
 
 BOOTSTRAP_IMAGE_CHEIP = 'codenvy/che-ip:nightly'
-# AF: why call before definition? print _docker_host_ip()
 
 def _docker_host_ip():
     client = docker.from_env()
@@ -22,3 +21,6 @@ address {0}".format(ip_list))
         logging.info("Docker daemon is running at the following \
 address {0}".format(ip_list[0]))
     return ip_list[0]
+
+
+print _docker_host_ip()

@@ -60,27 +60,25 @@ ENV PUBLIC_PORT=${PUBLIC_PORT}
 RUN echo -n #2===>PUBLIC_PORT=${PUBLIC_PORT}
 
 # set nginx base url for geoserver
-RUN echo export NGINX_BASE_URL=http://${NGINX_HOST}:${NGINX_PORT}/ | \
+RUN echo $NGINX_BASE_URL | \
     sed 's/tcp:\/\/\([^:]*\).*/\1/' >> /root/.bashrc
 
 # copy the script and perform the run of scripts from entrypoint.sh
 RUN mkdir -p /usr/local/tomcat/tmp
 WORKDIR /usr/local/tomcat/tmp
 COPY set_geoserver_auth.sh /usr/local/tomcat/tmp
-COPY setup_auth.sh /usr/local/tomcat/tmp
 COPY requirements.txt /usr/local/tomcat/tmp
-COPY get_dockerhost_ip.py /usr/local/tomcat/tmp
-COPY get_nginxhost_ip.py /usr/local/tomcat/tmp
 COPY entrypoint.sh /usr/local/tomcat/tmp
+COPY update_passwords.sh /usr/local/tomcat/tmp
+RUN chmod 755 *.sh
 
-RUN apt-get update \
+RUN apt-get -y update \
     && apt-get -y upgrade \
     && apt-get install -y python python-pip python-dev \
     && chmod +x /usr/local/tomcat/tmp/set_geoserver_auth.sh \
-    && chmod +x /usr/local/tomcat/tmp/setup_auth.sh \
     && chmod +x /usr/local/tomcat/tmp/entrypoint.sh \
-    && pip install pip==9.0.3 \
-    && pip install -r requirements.txt \
+    && pip install --upgrade pip && hash -r \
+    && pip install -r requirements.txt --upgrade \
     && chmod +x /usr/local/tomcat/tmp/get_dockerhost_ip.py \
     && chmod +x /usr/local/tomcat/tmp/get_nginxhost_ip.py
 
