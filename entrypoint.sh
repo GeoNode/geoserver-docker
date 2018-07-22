@@ -34,6 +34,14 @@ then
 
 fi
 
+if [ ! -z "${GEOSERVER_JAVA_OPTS}" ]
+then
+
+    echo "GEOSERVER_JAVA_OPTS is filled so I replace the value of '$JAVA_OPTS' with '$GEOSERVER_JAVA_OPTS' \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
+    JAVA_OPTS=${GEOSERVER_JAVA_OPTS}
+
+fi
+
 # control the value of NGINX_BASE_URL variable
 if [ -z `echo ${NGINX_BASE_URL} | sed 's/http:\/\/\([^:]*\).*/\1/'` ]
 then
