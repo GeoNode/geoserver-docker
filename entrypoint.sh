@@ -101,4 +101,4 @@ sed -i -e 's/localhost/rabbitmq/g' ${GEOSERVER_DATA_DIR}/notifier/notifier.xml
 sed -i -e 's/xom-\*\.jar/xom-\*\.jar,bcprov\*\.jar/g' /usr/local/tomcat/conf/catalina.properties
 
 # start tomcat
-exec env JAVA_OPTS=${JAVA_OPTS} catalina.sh run
+exec env JAVA_OPTS="${JAVA_OPTS}" catalina.sh run

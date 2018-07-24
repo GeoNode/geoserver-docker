@@ -36,7 +36,7 @@ services:
       - /geoserver_data/data
 
   postgis:
-    image: kartoza/postgis
+    image: geonode/postgis
     ports:
       - "25432:5432"
     volumes:
