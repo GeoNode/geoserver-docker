@@ -95,4 +95,4 @@ cp ${GEOSERVER_DATA_DIR}/global.xml ${GEOSERVER_DATA_DIR}/global.xml.orig
 /usr/local/tomcat/tmp/set_geoserver_auth.sh ${GEOSERVER_DATA_DIR}/global.xml ${GEOSERVER_DATA_DIR}/ ${TAGNAME} >> /usr/local/tomcat/tmp/set_geoserver_auth.log
 
 # start tomcat
-exec env JAVA_OPTS=${JAVA_OPTS} catalina.sh run
+exec env JAVA_OPTS="${JAVA_OPTS}" catalina.sh run
