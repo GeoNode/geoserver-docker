@@ -11,7 +11,7 @@ ENV GEOSERVER_DATA_DIR="/geoserver_data/data"
 # Download and install GeoServer
 #
 RUN cd /usr/local/tomcat/webapps \
-    && wget --progress=bar:force:noscroll \
+    && wget --no-check-certificate --progress=bar:force:noscroll \
     https://build.geo-solutions.it/geonode/geoserver/latest/geoserver-${GEOSERVER_VERSION}.war \
     && unzip -q geoserver-${GEOSERVER_VERSION}.war -d geoserver \
     && rm geoserver-${GEOSERVER_VERSION}.war \
