@@ -7,7 +7,7 @@ The image is based on the official Tomcat 9 image
 
 ## Installation
 
-This image is available as a [trusted build on the docker hub](https://registry.hub.docker.com/r/geonode/geoserver/), and is the recommended method of installation.
+This image is available as a [trusted build on the docker hub](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/), and is the recommended method of installation.
 Simple pull the image from the docker hub.
 
 ```bash
@@ -40,14 +40,15 @@ Point your browser to `http://localhost:8080/geoserver` and login using GeoServe
 There are mainly two different versions of this image which are useful for running **GeoNode** with different authentication system types. These versions are released as specific tags for two authentication mechanisms:
 
 **Cookie based authn**:
-- [geonode/geoserver:2.9.x](https://hub.docker.com/r/geonode/geoserver/builds/bx7ydhghnlrfnsppduyva73/)
+- [geonode/geoserver:2.9.x](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/builds/8389cb2d-124d-4f30-a02b-f11106baa33c/)
 
 **Oauth2 based authn**:
-- [geonode/geoserver:2.9.x-oauth2](https://hub.docker.com/r/geonode/geoserver/builds/bwca5rtexeoegzgroavftdr/)
-- [geonode/geoserver:2.10.x](https://hub.docker.com/r/geonode/geoserver/builds/bjohcnc29vm69acqjrvndxf/)
-- [geonode/geoserver:2.12.x](https://hub.docker.com/r/geonode/geoserver/builds/bh7pyw5atmkcljurwsnzbs7/)
-- [geonode/geoserver:2.13.x](https://hub.docker.com/r/geonode/geoserver/builds/btmjctbuvrjfnnrxrs4wyrs/)
-- [geonode/geoserver:2.14.x](https://hub.docker.com/r/geonode/geoserver/builds/bj53pi8he8uksz6ggvrs3wc/)
+- [geonode/geoserver:2.9.x-oauth2](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/builds/fd08708f-d495-4a40-8cbf-62a504e93b2c/)
+- [geonode/geoserver:2.10.x](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/builds/d8b90ab2-498f-4044-adad-7e3e0888fc39/)
+- [geonode/geoserver:2.12.x](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/builds/fb121f26-9270-4b14-9466-78e3f93f69ce/)
+- [geonode/geoserver:2.13.x](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/builds/6183c42d-5e11-44f1-b15c-cdcb817e94d9/)
+- [geonode/geoserver:2.14.x](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/builds/62de4f4f-6fe0-4dec-bed3-dc0ab1cf70d9/)
+- [geonode/geoserver:2.15.x](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/builds/190cee01-d9c8-4e6c-beaa-a0b5d8adffd5/)
 
 You can declare what version to use along with the data directory tag which corresponds to the same version.  
 
@@ -104,7 +105,8 @@ There has to be a correspondence one-to-one between the data directory version a
 * **2.10.x**: [geonode/geoserver_data:2.10.x](https://hub.docker.com/r/geonode/geoserver_data/builds/b5jqhpzapkqxzyevjizccug/)
 * **2.12.x**: [geonode/geoserver_data:2.12.x](https://hub.docker.com/r/geonode/geoserver_data/builds/byaaalw3lnasunpveyg3x4i/)
 * **2.13.x**: [geonode/geoserver_data:2.13.x](https://hub.docker.com/r/geonode/geoserver_data/builds/bunuqzq7a7dk65iumjhkbtc/)
-* **2.14.x**: [geonode/geoserver_data:2.14.x](https://hub.docker.com/r/geonode/geoserver_data/builds/blpdjzkrv7pm3stunzpn4pp/)
+* **2.14.x**: [geonode/geoserver_data:2.14.x](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver_data/builds/545f08f9-75a3-4161-bcb0-895c1817dc8d/)
+* **2.15.x**: [geonode/geoserver_data:2.15.x](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver_data/builds/dce29f95-b6f7-4f5e-86f1-78d5e98fd866/)
 
 ### Database
 
