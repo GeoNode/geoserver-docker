@@ -26,8 +26,15 @@ $ docker build -t "geonode/geoserver" .
 
 You can quick start the image using the command line
 
+Before run the container, dowload lastest data-2.xx.x.zip file from https://build.geo-solutions.it/geonode/geoserver/latest/  
+Create folder geoserver on your host:
 ```bash
-$ docker run --name "geoserver" -v /var/run/docker.sock:/var/run/docker.sock -d -p 8080:8080 geonode/geoserver
+$ sudo mkdir /opt/geoserver/
+$ sudo unzip ~/Dowmload/data-2.15.x.zip -d /opt/geoserver/
+```
+then run the container:  
+```bash
+$ docker run --name "geoserver" -v /var/run/docker.sock:/var/run/docker.sock -v /opt/geoserver/data/:/geoserver_data/data -d -p 8080:8080 geonode/geoserver
 ```
 
 Point your browser to `http://localhost:8080/geoserver` and login using GeoServer's default username and password:
