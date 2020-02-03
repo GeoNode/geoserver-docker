@@ -6,8 +6,8 @@ MAINTAINER GeoNode Development Team
 #
 ENV GEOSERVER_VERSION=2.15.x
 ENV GEOSERVER_DATA_DIR="/geoserver_data/data"
-
-#
+ENV GEOSERVER_BACKUP_DIR="/geoserver_data/backup"
+ENV GEOSERVER_BASE_DIR="/geoserver_data"
 # Download and install GeoServer
 #
 RUN cd /usr/local/tomcat/webapps \
@@ -15,7 +15,11 @@ RUN cd /usr/local/tomcat/webapps \
     https://build.geo-solutions.it/geonode/geoserver/latest/geoserver-${GEOSERVER_VERSION}.war \
     && unzip -q geoserver-${GEOSERVER_VERSION}.war -d geoserver \
     && rm geoserver-${GEOSERVER_VERSION}.war \
-    && mkdir -p $GEOSERVER_DATA_DIR
+    && mkdir -p $GEOSERVER_DATA_DIR 
+RUN mkdir -p ${GEOSERVER_BACKUP_DIR} \
+    && cd ${GEOSERVER_BACKUP_DIR} \
+    && wget --no-check-certificate --progress=bar:force:noscroll \
+    https://build.geo-solutions.it/geonode/geoserver/latest/data-${GEOSERVER_VERSION}.zip
 
 VOLUME $GEOSERVER_DATA_DIR
 

@@ -59,6 +59,13 @@ else
 
 fi
 
+# Check for existing installation
+if [ ! -f "${GEOSERVER_DATA_DIR}/global.xml" ]
+then
+    echo "Could not find existing data directory, extracting files from zip"
+    unzip ${GEOSERVER_BACKUP_DIR}/data-${GEOSERVER_VERSION}.zip -d ${GEOSERVER_BASE_DIR}
+fi
+
 # set basic tagname
 TAGNAME=( "baseUrl" )
 
@@ -77,9 +84,12 @@ else
 fi
 
 # backup geonode REST role service config.xml
-cp "${GEOSERVER_DATA_DIR}/security/role/geonode REST role service/config.xml" "${GEOSERVER_DATA_DIR}/security/role/geonode REST role service/config.xml.orig"
+if [ -f "${GEOSERVER_DATA_DIR}/security/role/geonode\ REST\ role\ service/config.xml"  ]
+then
+    cp "${GEOSERVER_DATA_DIR}/security/role/geonode\ REST\ role\ service/config.xml" "${GEOSERVER_DATA_DIR}/security/role/geonode\ REST\ role\ service/config.xml.orig"
+fi
 # run the setting script for geonode REST role service
-/usr/local/tomcat/tmp/set_geoserver_auth.sh "${GEOSERVER_DATA_DIR}/security/role/geonode REST role service/config.xml" "${GEOSERVER_DATA_DIR}/security/role/geonode REST role service/" ${TAGNAME} >> /usr/local/tomcat/tmp/set_geoserver_auth.log
+/usr/local/tomcat/tmp/set_geoserver_auth.sh "${GEOSERVER_DATA_DIR}/security/role/geonode\ REST\ role\ service/config.xml" "${GEOSERVER_DATA_DIR}/security/role/geonode\ REST\ role\ service/" ${TAGNAME} >> /usr/local/tomcat/tmp/set_geoserver_auth.log
 
 # set oauth2 filter tagname
 TAGNAME=( "accessTokenUri" "userAuthorizationUri" "redirectUri" "checkTokenEndpointUrl" "logoutUri" )
