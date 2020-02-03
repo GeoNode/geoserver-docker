@@ -59,6 +59,13 @@ else
 
 fi
 
+# Check for existing installation
+if ! [ -f ${GEOSERVER_DATA_DIR}/global.xml ]
+then
+    echo "Could not find existing data directory, extracting files from zip"
+    unzip ${GEOSERVER_BACKUP_DIR}/data-${GEOSERVER_VERSION}.zip -d ${GEOSERVER_DATA_DIR}
+fi
+
 # set basic tagname
 TAGNAME=( "baseUrl" )
 
