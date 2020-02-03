@@ -7,7 +7,7 @@ MAINTAINER GeoNode Development Team
 ENV GEOSERVER_VERSION=2.15.x
 ENV GEOSERVER_DATA_DIR="/geoserver_data/data"
 ENV GEOSERVER_BACKUP_DIR="/geoserver_data/backup"
-#
+ENV GEOSERVER_BASE_DIR="/geoserver_data"
 # Download and install GeoServer
 #
 RUN cd /usr/local/tomcat/webapps \
