@@ -30,7 +30,7 @@ Before run the container, dowload lastest data-2.xx.x.zip file from https://buil
 Create folder geoserver on your host:
 ```bash
 $ sudo mkdir /opt/geoserver/
-$ sudo unzip ~/Dowmload/data-2.17.1.zip -d /opt/geoserver/
+$ sudo unzip ~/Dowmload/data-2.17.2.zip -d /opt/geoserver/
 ```
 then run the container:  
 ```bash
@@ -55,7 +55,7 @@ There are mainly two different versions of this image which are useful for runni
 - [geonode/geoserver:2.12.x](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/builds/fb121f26-9270-4b14-9466-78e3f93f69ce/)
 - [geonode/geoserver:2.13.x](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/builds/6183c42d-5e11-44f1-b15c-cdcb817e94d9/)
 - [geonode/geoserver:2.14.x](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/builds/62de4f4f-6fe0-4dec-bed3-dc0ab1cf70d9/)
-- [geonode/geoserver:2.17.1](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/builds/190cee01-d9c8-4e6c-beaa-a0b5d8adffd5/)
+- [geonode/geoserver:2.17.2](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver/builds/190cee01-d9c8-4e6c-beaa-a0b5d8adffd5/)
 
 You can declare what version to use along with the data directory tag which corresponds to the same version.  
 
@@ -113,7 +113,7 @@ There has to be a correspondence one-to-one between the data directory version a
 * **2.12.x**: [geonode/geoserver_data:2.12.x](https://hub.docker.com/r/geonode/geoserver_data/builds/byaaalw3lnasunpveyg3x4i/)
 * **2.13.x**: [geonode/geoserver_data:2.13.x](https://hub.docker.com/r/geonode/geoserver_data/builds/bunuqzq7a7dk65iumjhkbtc/)
 * **2.14.x**: [geonode/geoserver_data:2.14.x](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver_data/builds/545f08f9-75a3-4161-bcb0-895c1817dc8d/)
-* **2.17.1**: [geonode/geoserver_data:2.17.1](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver_data/builds/dce29f95-b6f7-4f5e-86f1-78d5e98fd866/)
+* **2.17.2**: [geonode/geoserver_data:2.17.2](https://cloud.docker.com/u/geonode/repository/registry-1.docker.io/geonode/geoserver_data/builds/dce29f95-b6f7-4f5e-86f1-78d5e98fd866/)
 
 ### Database
 
