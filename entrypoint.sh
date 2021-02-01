@@ -34,6 +34,14 @@ then
 
 fi
 
+if [ ${GEONODE_LB_PROTOCOL} ]
+then
+
+    echo "GEONODE_LB_PROTOCOL is filled so I replace the value of '$PUBLIC_PROTOCOL' with '$GEONODE_LB_PROTOCOL' \n" >> /usr/local/tomcat/tmp/set_geoserver_auth.log
+    echo export PUBLIC_PROTOCOL=${GEONODE_LB_PROTOCOL} >> /root/.override_env
+
+fi
+
 if [ ! -z "${GEOSERVER_JAVA_OPTS}" ]
 then
 
