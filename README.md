@@ -30,7 +30,7 @@ Before run the container, dowload lastest data-2.xx.x.zip file from https://buil
 Create folder geoserver on your host:
 ```bash
 $ sudo mkdir /opt/geoserver/
-$ sudo unzip ~/Dowmload/data-2.18.2.zip -d /opt/geoserver/
+$ sudo unzip ~/Dowmload/data-2.18.3.zip -d /opt/geoserver/
 ```
 then run the container:  
 ```bash

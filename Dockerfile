@@ -4,7 +4,7 @@ MAINTAINER GeoNode Development Team
 #
 # Set GeoServer version and data directory
 #
-ENV GEOSERVER_VERSION=2.18.2
+ENV GEOSERVER_VERSION=2.18.3
 ENV GEOSERVER_DATA_DIR="/geoserver_data/data"
 
 #
@@ -12,7 +12,7 @@ ENV GEOSERVER_DATA_DIR="/geoserver_data/data"
 #
 RUN cd /usr/local/tomcat/webapps \
     && wget --no-check-certificate --progress=bar:force:noscroll \
-    https://www.dropbox.com/s/xlich7pmneaupqp/geoserver-${GEOSERVER_VERSION}.war?dl=1 -O geoserver-${GEOSERVER_VERSION}.war \
+    https://www.dropbox.com/s/cd20is9ddjz7ti5/geoserver-${GEOSERVER_VERSION}.war?dl=1 -O geoserver-${GEOSERVER_VERSION}.war \
     && unzip -q geoserver-${GEOSERVER_VERSION}.war -d geoserver \
     && rm geoserver-${GEOSERVER_VERSION}.war \
     && mkdir -p $GEOSERVER_DATA_DIR
