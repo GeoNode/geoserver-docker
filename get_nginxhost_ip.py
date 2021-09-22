@@ -2,8 +2,18 @@
 
 import logging
 import os
+import socket
+import sys
 
 import docker
+
+try:
+    socket.getaddrinfo('geonode', '80')
+    logging.info("k8s service discovery enabled")
+    print "http://geonode:80"
+    sys.exit()
+except socket.gaierror as e:
+    logging.info("k8s service discovery not enabled, using docker-compose")
 
 client = docker.from_env()
 # print client.info()
