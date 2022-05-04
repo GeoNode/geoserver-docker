@@ -17,6 +17,14 @@ RUN cd /usr/local/tomcat/webapps \
     && rm geoserver.war \
     && mkdir -p $GEOSERVER_DATA_DIR
 
+#
+# Install script requirements
+#
+
+RUN apt-get update \
+    && apt-get -y upgrade \
+    && apt-get install -y python3 python3-pip python3-dev
+
 VOLUME $GEOSERVER_DATA_DIR
 
 ###########docker host###############
@@ -73,10 +81,7 @@ COPY get_dockerhost_ip.py /usr/local/tomcat/tmp
 COPY get_nginxhost_ip.py /usr/local/tomcat/tmp
 COPY entrypoint.sh /usr/local/tomcat/tmp
 
-RUN apt-get update \
-    && apt-get -y upgrade \
-    && apt-get install -y python3 python3-pip python3-dev \
-    && chmod +x /usr/local/tomcat/tmp/set_geoserver_auth.sh \
+RUN chmod +x /usr/local/tomcat/tmp/set_geoserver_auth.sh \
     && chmod +x /usr/local/tomcat/tmp/setup_auth.sh \
     && chmod +x /usr/local/tomcat/tmp/entrypoint.sh \
     && pip install pip==9.0.3 \
