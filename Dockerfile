@@ -20,11 +20,13 @@ RUN cd /usr/local/tomcat/webapps \
 #
 # Install script requirements
 #
-
 RUN apt-get update \
     && apt-get -y upgrade \
     && apt-get install -y python3 python3-pip python3-dev \
-    && pip install pip==9.0.3
+    && pip install pip==9.0.3 \
+    && mkdir -p /usr/local/tomcat/tmp
+COPY requirements.txt /usr/local/tomcat/tmp
+RUN pip install -r /usr/local/tomcat/tmp/requirements.txt
 
 VOLUME $GEOSERVER_DATA_DIR
 
@@ -73,11 +75,9 @@ RUN echo export NGINX_BASE_URL=http://${NGINX_HOST}:${NGINX_PORT}/ | \
     sed 's/tcp:\/\/\([^:]*\).*/\1/' >> /root/.bashrc
 
 # copy the script and perform the run of scripts from entrypoint.sh
-RUN mkdir -p /usr/local/tomcat/tmp
 WORKDIR /usr/local/tomcat/tmp
 COPY set_geoserver_auth.sh /usr/local/tomcat/tmp
 COPY setup_auth.sh /usr/local/tomcat/tmp
-COPY requirements.txt /usr/local/tomcat/tmp
 COPY get_dockerhost_ip.py /usr/local/tomcat/tmp
 COPY get_nginxhost_ip.py /usr/local/tomcat/tmp
 COPY entrypoint.sh /usr/local/tomcat/tmp
@@ -85,7 +85,6 @@ COPY entrypoint.sh /usr/local/tomcat/tmp
 RUN chmod +x /usr/local/tomcat/tmp/set_geoserver_auth.sh \
     && chmod +x /usr/local/tomcat/tmp/setup_auth.sh \
     && chmod +x /usr/local/tomcat/tmp/entrypoint.sh \
-    && pip install -r requirements.txt \
     && chmod +x /usr/local/tomcat/tmp/get_dockerhost_ip.py \
     && chmod +x /usr/local/tomcat/tmp/get_nginxhost_ip.py
 
