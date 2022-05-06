@@ -74,19 +74,21 @@ RUN echo -n #2===>PUBLIC_PORT=${PUBLIC_PORT}
 RUN echo export NGINX_BASE_URL=http://${NGINX_HOST}:${NGINX_PORT}/ | \
     sed 's/tcp:\/\/\([^:]*\).*/\1/' >> /root/.bashrc
 
-# copy the script and perform the run of scripts from entrypoint.sh
+# copy the scripts and set executable permission
 WORKDIR /usr/local/tomcat/tmp
-COPY set_geoserver_auth.sh /usr/local/tomcat/tmp
-COPY setup_auth.sh /usr/local/tomcat/tmp
-COPY get_dockerhost_ip.py /usr/local/tomcat/tmp
-COPY get_nginxhost_ip.py /usr/local/tomcat/tmp
-COPY entrypoint.sh /usr/local/tomcat/tmp
+COPY set_geoserver_auth.sh \
+    setup_auth.sh \
+    get_dockerhost_ip.py \
+    get_nginxhost_ip.py \
+    entrypoint.sh \
+    /usr/local/tomcat/tmp/
 
-RUN chmod +x /usr/local/tomcat/tmp/set_geoserver_auth.sh \
-    && chmod +x /usr/local/tomcat/tmp/setup_auth.sh \
-    && chmod +x /usr/local/tomcat/tmp/entrypoint.sh \
-    && chmod +x /usr/local/tomcat/tmp/get_dockerhost_ip.py \
-    && chmod +x /usr/local/tomcat/tmp/get_nginxhost_ip.py
+RUN chmod +x \
+    set_geoserver_auth.sh \
+    setup_auth.sh \
+    get_dockerhost_ip.py \
+    get_nginxhost_ip.py \
+    entrypoint.sh
 
 ENV JAVA_OPTS="-Djava.awt.headless=true -XX:MaxPermSize=512m -XX:PermSize=256m -Xms512m -Xmx2048m -XX:+UseConcMarkSweepGC -XX:+UseParNewGC -XX:ParallelGCThreads=4 -Dfile.encoding=UTF8 -Djavax.servlet.request.encoding=UTF-8 -Djavax.servlet.response.encoding=UTF-8 -Duser.timezone=GMT -Dorg.geotools.shapefile.datetime=false -DGEOSERVER_CSRF_DISABLED=true -DPRINT_BASE_URL=http://geoserver:8080/geoserver/pdf"
 
