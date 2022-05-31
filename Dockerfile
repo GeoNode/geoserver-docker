@@ -1,5 +1,5 @@
 FROM tomcat:9-jre8
-MAINTAINER GeoNode Development Team
+LABEL GeoNode Development Team
 
 #
 # Set GeoServer version and data directory
